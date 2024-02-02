@@ -17,11 +17,10 @@ public class GestioneFile {
     public static void main(String[] args) {
         
         //1)LETTURA
-        Lettore lettore = new Lettore("user.json");
+        Lettore lettore = new Lettore("user.json",false);
         lettore.start();
         try {
             lettore.join();
-           
         } catch (InterruptedException ex) {
             Logger.getLogger(GestioneFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -41,6 +40,16 @@ public class GestioneFile {
         threadScrittore.start();
         try {
             threadScrittore.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GestioneFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        //3) AZIONE DEL COPIARE
+        Lettore lettore2 = new Lettore("output.csv",true);
+        lettore2.start();
+        try {
+            lettore2.join();
         } catch (InterruptedException ex) {
             Logger.getLogger(GestioneFile.class.getName()).log(Level.SEVERE, null, ex);
         }
